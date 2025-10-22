@@ -1,6 +1,7 @@
 #include <catch2/catch_all.hpp>
 #include <app/asset_dir.h>
 #include <uipc/uipc.h>
+#include <uipc/common/timer.h>
 #include <uipc/constitution/affine_body_constitution.h>
 #include <filesystem>
 #include <fstream>
@@ -184,6 +185,7 @@ int main()
 
     // world.recover();
 
+    Timer::enable_all();
     while(world.frame() < 1000)
     {
         world.advance();
@@ -193,4 +195,5 @@ int main()
             fmt::format("{}scene_surface{}.obj", this_output_path, world.frame()));
         // fmt::println("frame: {}", world.frame());
     }
+    Timer::report();
 }
